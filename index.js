@@ -9,7 +9,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// mongoose.connect("mongodb+srv://sam:zltZpPdkL4vWzew2@cluster0.gudyd1v.mongodb.net/Todo")
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB Connected 😎")
