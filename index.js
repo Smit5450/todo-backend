@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 // mongoose.connect("mongodb+srv://sam:zltZpPdkL4vWzew2@cluster0.gudyd1v.mongodb.net/Todo")
-mongoose.connect("mongodb://sam:zltZpPdkL4vWzew2@ac-id5lblz-shard-00-00.gudyd1v.mongodb.net:27017,ac-id5lblz-shard-00-01.gudyd1v.mongodb.net:27017,ac-id5lblz-shard-00-02.gudyd1v.mongodb.net:27017/Todo?ssl=true&replicaSet=atlas-osu8pd-shard-0&authSource=admin&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB Connected 😎")
     })
@@ -52,6 +52,6 @@ app.patch("/todos/:id", async (req, res) => {
     await todo.save()
     res.json(todo)
 })
-app.listen(5000, () => {
-    console.log("Server running on port 5000 🚀");
+app.listen(process.env.PORT||5000, () => {
+    console.log(`Server running on port ${process.env.PORT||5000} 🚀`);
 })
